@@ -1,6 +1,6 @@
 {
-  "name": "Scrim-s09hm550j3",
-  "description": "https://v2.scrimba.com/the-frontend-developer-career-path-c0j/~0fp",
+  "name": "SFA chatbox",
+  "description": "This App is a clone of twitter to learn some essential javascript concept",
   "scripts": {
     "start": "vite",
     "dev": "vite",
