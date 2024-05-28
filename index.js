@@ -9,10 +9,19 @@ tweetBtn.addEventListener('click', function(){
 })
 document.addEventListener('click', function(e){
     if(e.target.dataset.like){
-        console.log(e.target.dataset.like)
+       handleLikeClick(e.target.dataset.like)
     }
    
 })
+
+function handleLikeClick(tweetId){
+    
+    const targetTweetObj = tweetsData.filter(function(tweet){
+        return tweet.uuid === tweetId
+    })[0]
+    targetTweetObj.likes++
+    console.log(targetTweetObj)
+}
 function getFeed(){
     let feedHTML = ``
     tweetsData.forEach(function(tweet){
