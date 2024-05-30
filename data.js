@@ -38,7 +38,7 @@
       profilePic: `images/flower.png`,
       likes: 10,
       retweets: 3,
-      tweetText: `Are you a coder if you only know HTML?`,
+      tweetText: `Is HTML a programming language?`,
       replies: [
           {
               handle: `@StackOverflower ☣️`,
