@@ -1,1 +1,12 @@
-{}
+{
+  "name": "twitter-clone",
+  "version": "1.0.0",
+  "description": "A Twitter clone web application built with HTML, CSS, and JavaScript. This application allows users to post tweets, like, retweet, and reply to tweets, similar to the core functionalities of Twitter.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
