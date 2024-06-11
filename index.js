@@ -1,12 +1,9 @@
 import { tweetsData } from './data.js'
 
-const tweetInput = document.getElementById('tweet-input')
-const tweetBtn = document.getElementById('tweet-btn')
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 
-tweetBtn.addEventListener('click', function(){
-    console.log(tweetInput.value)
-})
+
 document.addEventListener('click', function(e){
     if(e.target.dataset.like){
        handleLikeClick(e.target.dataset.like)
@@ -14,7 +11,15 @@ document.addEventListener('click', function(e){
     else if(e.target.dataset.retweet){
         handleRetweetClick(e.target.dataset.retweet)
     }
+    else if(e.target.dataset.reply){
+        handleReplyClick(e.target.dataset.reply)
+    }
+
+    else if(e.target.id === 'tweet-btn'){
+        handleTweetBtnClick()
+    }
    
+
 })
 
 function handleLikeClick(tweetId){
@@ -49,6 +54,33 @@ function handleRetweetClick(tweetId){
     tweetsObjData.isRetweeted = !tweetsObjData.isRetweeted
     render()
 }
+
+function handleReplyClick(replyId){
+    document.getElementById(`replies-${replyId}`).classList.toggle('hidden')
+}
+
+function handleTweetBtnClick(){
+    const tweetInput = document.getElementById('tweet-input')
+    if (tweetInput.value){
+
+    
+    tweetsData.unshift({
+        handle: `@faith`,
+        profilePic: `images/faith.png`,
+        likes: 0,
+        retweets: 0,
+        tweetText: tweetInput.value,
+        replies: [],
+        isLiked: false,
+        isRetweeted: false,
+        uuid: uuidv4()
+    }) 
+    render()
+    tweetInput.value =''
+}
+}
+
+
 function getFeed(){
     let feedHTML = ``
     tweetsData.forEach(function(tweet){
@@ -91,7 +123,7 @@ function getFeed(){
             <p class="tweet-text">${tweet.tweetText}</p>
             <div class="tweet-details">
                 <span class="tweet-detail">
-                <i class="fa-solid fa-comment-dots" data-replies='${tweet.uuid}'></i>
+                <i class="fa-solid fa-comment-dots" data-reply='${tweet.uuid}'></i>
                   ${tweet.replies.length}
                 </span>
                 <span class="tweet-detail">
@@ -105,7 +137,7 @@ function getFeed(){
             </div>   
         </div>            
     </div>
-    <div id ="replies-${tweet.uuid}">
+    <div class="hidden" id = "replies-${tweet.uuid}">
     ${repliesHtml}
     </div>
 
